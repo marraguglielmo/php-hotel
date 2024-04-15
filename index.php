@@ -40,7 +40,8 @@ $hotels = [
 ];
 
 $data = $_GET;
-var_dump($data['select-parking']);
+
+$filterHotel = $hotels;
 
 // verifico se esiste il filtro
 if (isset($data['select-parking'])) {
@@ -58,9 +59,6 @@ if (isset($data['select-parking'])) {
         // se il valore non è 'parking' li mostro tutti
         $filterHotel = $hotels;
     }
-} else {
-    // se non esiste l'array sarà uguale all'array iniziale
-    $filterHotel = $hotels;
 }
 
 ?>
@@ -84,12 +82,25 @@ if (isset($data['select-parking'])) {
     <section class="home-page">
         <div class="container text-center py-3 border-bottom border-2 ">
             <form action="index.php" method="GET">
-                <label for="select-parking" class="mb-1">Filtro parcheggio</label>
-                <select name="select-parking" id="parking" class="form-select m-auto">
-                    <option selected>Seleziona</option>
-                    <option value="all">Tutti</option>
-                    <option value="parking">Parcheggio</option>
-                </select>
+                <div class="mb-3">
+                    <label for="select-parking" class="mb-1">Filtro parcheggio</label>
+                    <select name="select-parking" id="parking" class="form-select m-auto">
+                        <option value="all" selected>Tutti</option>
+                        <option value="parking">Parcheggio</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="rating" class="mb-1">Voto</label>
+                    <select name="rating" id="rating" class="form-select m-auto">
+                        <option selected>Seleziona</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                </div>
                 <button type="submit" class="btn btn-primary my-3">Filtra</button>
             </form>
         </div>
