@@ -59,24 +59,37 @@ $hotels = [
 
     <section class="home-page">
         <div class="container">
-            <div class="row row-cols-2 ">
+            <div class="row row-cols-1 ">
                 <?php foreach ($hotels as $hotel) : ?>
                     <div class="col text-center">
-                        <div class="h-card my-3">
-                            <div>
+                        <div class="h-card m-auto my-3">
+                            <h3 class="mb-3">
                                 <?php echo $hotel['name']; ?>
+                            </h3>
+                            <div class="mb-2">
+                                Descrizione:
+                                <span class="fw-bold">
+                                    <?php echo $hotel['description']; ?>
+                                </span>
                             </div>
                             <div>
-                                <?php echo $hotel['description']; ?>
+                                Parcheggio:
+                                <span class="fw-bold">
+                                    <?php $park = $hotel['parking'] === true ? 'si' : 'no' ?>
+                                    <?php echo $park ?>
+                                </span>
                             </div>
                             <div>
-                                <?php echo $hotel['parking']; ?>
+                                Voto:
+                                <span class="fw-bold">
+                                    <?php echo $hotel['vote']; ?> su 5
+                                </span>
                             </div>
                             <div>
-                                <?php echo $hotel['vote']; ?>
-                            </div>
-                            <div>
-                                <?php echo $hotel['distance_to_center']; ?>
+                                Distanza dal centro:
+                                <span class="fw-bold">
+                                    <?php echo $hotel['distance_to_center']; ?> km
+                                </span>
                             </div>
                         </div>
                     </div>
