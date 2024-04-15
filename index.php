@@ -39,6 +39,24 @@ $hotels = [
 
 ];
 
+$data = $_GET;
+var_dump($data['select-parking']);
+
+// verifico se esiste il filtro
+if (isset($data['select-parking'])) {
+    // se esiste creo un array in cui pusherò gli hotel con parcheggio
+    $filterHotel = [];
+    foreach ($hotels as $hotel) {
+
+        if ($hotel['parking']) {
+            $filterHotel[] = $hotel;
+        }
+    }
+} else {
+    // se non esiste l'array sarà uguale all'array iniziale
+    $filterHotel = $hotels;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -55,10 +73,21 @@ $hotels = [
 
 <body>
 
-    <h1 class="text-center my-4">PHP Hotel</h1>
+    <h1 class="text-center fw-semibold  my-4">PHP Hotel</h1>
 
     <section class="home-page">
-        <div class="container">
+        <div class="container text-center py-3 border-bottom border-2 ">
+            <form action="index.php" method="GET">
+                <label for="select-parking" class="mb-1">Filtro parcheggio</label>
+                <select name="select-parking" id="parking" class="form-select m-auto">
+                    <option selected>Seleziona</option>
+                    <option value="all">Tutti</option>
+                    <option value="parking">Parcheggio</option>
+                </select>
+                <button type="submit" class="btn btn-primary my-3">Filtra</button>
+            </form>
+        </div>
+        <div class="container py-4">
             <div class="row row-cols-1 ">
                 <?php foreach ($hotels as $hotel) : ?>
                     <div class="col text-center">
