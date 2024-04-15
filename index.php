@@ -46,11 +46,17 @@ var_dump($data['select-parking']);
 if (isset($data['select-parking'])) {
     // se esiste creo un array in cui pusherò gli hotel con parcheggio
     $filterHotel = [];
-    foreach ($hotels as $hotel) {
+    if ($data['select-parking'] === 'parking') {
 
-        if ($hotel['parking']) {
-            $filterHotel[] = $hotel;
+        foreach ($hotels as $hotel) {
+            // se il booleano 'parking' è vero pusho l'hotel
+            if ($hotel['parking'] === true) {
+                $filterHotel[] = $hotel;
+            }
         }
+    } else {
+        // se il valore non è 'parking' li mostro tutti
+        $filterHotel = $hotels;
     }
 } else {
     // se non esiste l'array sarà uguale all'array iniziale
@@ -88,8 +94,8 @@ if (isset($data['select-parking'])) {
             </form>
         </div>
         <div class="container py-4">
-            <div class="row row-cols-1 ">
-                <?php foreach ($hotels as $hotel) : ?>
+            <div class="row row-cols-3 ">
+                <?php foreach ($filterHotel as $hotel) : ?>
                     <div class="col text-center">
                         <div class="h-card m-auto my-3">
                             <h3 class="mb-3">
